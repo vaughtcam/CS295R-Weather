@@ -1,25 +1,36 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
-
+import getLocation from '../Utilities/api';
+import getWeather from '../Utilities/api';
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+
+ const handleSubmit = async (zipcode) => {
+  try {
+    const city = await getLocation(zipcode);
+    const forecast = await getWeather(city.lat, city.lng)
+
+    setCity(city)
+    setForecast(forecast)
+    setSelectedDay(null)
+
+    console.log({city})
+    console.log({forecast})
+
+
+  } catch (error) {
+    if (error.response) {
+      // 5xx or 4xx error console.log(error.response.data); console.log(error.response.status); console.log(error.response.headers);
+      }
+      else if (error.request) {
+      // request never left console.log(error.request);
+      } else {
+        // anything else
+      console.log(error.message); }
+    
+  }
+ }
 }
 
 export default App;
