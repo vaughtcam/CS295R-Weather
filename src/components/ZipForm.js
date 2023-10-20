@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 function ZipForm ({ onSubmit }) {
     const [zipcode, setZipcode] = useState("");
 
@@ -15,7 +17,7 @@ function ZipForm ({ onSubmit }) {
     return (
         <div>
             <div className="zip-form">
-                <form id="zipForm"> 
+                <form onSubmit = {handleSubmit} id="zipForm"> 
                     <div className="flex-parent">
                         <label for="zipcode">Zip</label>
                         <input className="form-control"
@@ -29,3 +31,5 @@ function ZipForm ({ onSubmit }) {
         </div>
     )
 }
+
+export default ZipForm
