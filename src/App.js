@@ -6,14 +6,16 @@ import CurrentDay from "./components/CurrentDay"
 //import WeatherListItem from "./components/WeatherListItem" 
 
 function App() {
+console.log("hello world")
 
 const [city, setCity] = useState([]);
 const [forecast, setForecast] = useState([]);
-const [selectedDay, setSelectedDay] = useState('')
+const [selectedDay, setSelectedDay] = useState('');
 
  const handleSubmit = async (zipcode) => {
-
+console.log ("hello world")
   try {
+    console.log ("hello world")
     const city = await getLocation(zipcode);
     const forecast = await getWeather(city.lat, city.lng)
 
@@ -40,13 +42,16 @@ const [selectedDay, setSelectedDay] = useState('')
 
  console.log(forecast[0])
 //<WeatherListItem  forecastDay = {forecast[0]} />
+if(forecast != []){
  return (
   <div>
       <ZipForm onSubmit={handleSubmit} />
       <CurrentDay city = {city} forecastDay = {forecast[0]} />
       
   </div>
-);
+);}
+
+else  ( <ZipForm onSubmit={handleSubmit} />)
 }
 
 export default App;

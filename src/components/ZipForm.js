@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 function ZipForm ({ onSubmit }) {
+    console.log("hello world")
     const [zipcode, setZipcode] = useState("");
 
     const handleChange = (event) => {
@@ -8,7 +9,9 @@ function ZipForm ({ onSubmit }) {
       };
 
       const handleSubmit = (event) => {
-        event.preventDefault();
+        console.log ("hello world")
+         event.preventDefault();
+         console.log ("hello world")
     
         onSubmit(zipcode);
       };
