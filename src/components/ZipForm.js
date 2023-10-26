@@ -25,7 +25,7 @@ function ZipForm ( {onSubmit} ) {
                             type="input" id="zipcode" name="zipcode"
                             value={zipcode} required onChange={handleChange}
                         />
-                        <button type="submit" class="btn btn-success"> Get the forcast!</button>
+                        <button type="submit" class="btn btn-success"> Get the forecast!</button>
                     </div>
                 </form>
             </div>

@@ -11,7 +11,7 @@ function App() {
 
 const [city, setCity] = useState([]);
 const [forecast, setForecast] = useState([]);
-const [selectedDay, setSelectedDay] = useState(0);
+const [selectedDay, setSelectedDay] = useState(null);
 
 
 
@@ -47,8 +47,9 @@ const [selectedDay, setSelectedDay] = useState(0);
  return (
   <div>
       <ZipForm onSubmit={handleSubmit} />
-      {forecast.length > 0 && 
-      <CurrentDay forecastDay={forecast[0]} city={city} />}
+      {selectedDay !== null && 
+      <CurrentDay forecastDay={forecast[selectedDay]} 
+          city={city} />}
       <WeatherList  forecast = {forecast} onDayClick={handleDayClick}/>
       
   </div>
