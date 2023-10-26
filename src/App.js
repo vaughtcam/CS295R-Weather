@@ -3,28 +3,27 @@ import './App.css';
 import { getLocation, getWeather } from './utilities/api';
 import ZipForm from "./components/ZipForm" 
 import CurrentDay from "./components/CurrentDay" 
-//import WeatherListItem from "./components/WeatherListItem" 
+import WeatherListItem from "./components/WeatherListItem" 
+import WeatherList from './components/WeatherList';
 
 function App() {
-console.log("hello world")
+
 
 const [city, setCity] = useState([]);
 const [forecast, setForecast] = useState([]);
-const [selectedDay, setSelectedDay] = useState('');
+const [selectedDay, setSelectedDay] = useState(0);
+
+
+
 
  const handleSubmit = async (zipcode) => {
-console.log ("hello world")
+
   try {
-    console.log ("hello world")
     const city = await getLocation(zipcode);
     const forecast = await getWeather(city.lat, city.lng)
-
     setCity(city)
     setForecast(forecast)
     setSelectedDay(null)
-
-    console.log({city})
-    console.log({forecast})
 
 
   } catch (error) {
@@ -40,18 +39,20 @@ console.log ("hello world")
   }
  }
 
- console.log(forecast[0])
-//<WeatherListItem  forecastDay = {forecast[0]} />
-if(forecast != []){
+ const handleDayClick = (index) => {
+  setSelectedDay(index)
+}
+
+
  return (
   <div>
       <ZipForm onSubmit={handleSubmit} />
-      <CurrentDay city = {city} forecastDay = {forecast[0]} />
+      {forecast.length > 0 && 
+      <CurrentDay forecastDay={forecast[0]} city={city} />}
+      <WeatherList  forecast = {forecast} onDayClick={handleDayClick}/>
       
   </div>
-);}
-
-else  ( <ZipForm onSubmit={handleSubmit} />)
+)
 }
 
 export default App;

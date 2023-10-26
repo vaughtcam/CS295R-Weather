@@ -1,6 +1,7 @@
+import {getWeekday} from '../utilities/dates';
+
 function CurrentDay ({city, forecastDay}) {
-    console.log(forecastDay);
-    console.log(city);
+    
     
 //<h1 className="day-header">${weekday} in ${city.name}</h1>
 //${forecastDay.description}
@@ -8,10 +9,10 @@ function CurrentDay ({city, forecastDay}) {
     return (
         
         <div className="current-day">
-        <h1 className="day-header"> in {city.name}</h1>
+        <h1 className="day-header"> {getWeekday(forecastDay.dt)} in {city.name}</h1>
         <div className="weather">
         <p>
-            <img src='http://openweathermap.org/img/w/{forecastDay.icon}.png' alt={forecastDay.description}/>
+        <img src={`http://openweathermap.org/img/w/${forecastDay.icon}.png`} alt={forecastDay.description}/>
             {forecastDay.description}
         </p>
       </div>

@@ -1,7 +1,6 @@
 import { useState } from "react";
 
-function ZipForm ({ onSubmit }) {
-    console.log("hello world")
+function ZipForm ( {onSubmit} ) {
     const [zipcode, setZipcode] = useState("");
 
     const handleChange = (event) => {
@@ -9,9 +8,8 @@ function ZipForm ({ onSubmit }) {
       };
 
       const handleSubmit = (event) => {
-        console.log ("hello world")
          event.preventDefault();
-         console.log ("hello world")
+
     
         onSubmit(zipcode);
       };
@@ -20,7 +18,7 @@ function ZipForm ({ onSubmit }) {
     return (
         <div>
             <div className="zip-form">
-                <form onSubmit = {handleSubmit} id="zipForm"> 
+                <form onSubmit={handleSubmit}id="zipForm"> 
                     <div className="flex-parent">
                         <label for="zipcode">Zip</label>
                         <input className="form-control"
